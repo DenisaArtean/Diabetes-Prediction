@@ -1,3 +1,10 @@
+:root{
+  --main-color: #99ceff;
+  --second-color: #333;
+  --white-color: #f2f2f2;
+}
+
+
 body {
   font-family: "Lato", Arial, sans-serif;
   font-size: 16px;
@@ -43,8 +50,8 @@ body {
   right: 0;
   bottom: 0;
   width: 50px;
-  height: 51px;
-  background: #333;
+  height: 48px;
+  background: var(--main-color);
   font-size: 20px;
   border-radius: 5px 0 0 5px;
 }
@@ -54,7 +61,7 @@ body {
 }
 
 .form-group .icon span {
-    color: #fff;
+    color: #333;
 }
 
 
@@ -111,8 +118,8 @@ body {
 .btn.btn-primary {
     display: inline-block;
     font-size: 15px;
-    color: #fff;
-    background: #333;
+    color: #333;
+    background: var(--main-color);
     padding: 10px 20px;
     border: none;
     cursor: pointer;
@@ -121,8 +128,8 @@ body {
 }
 
 .btn:hover{
-  background: #99ceff;
-  color: #333;
+  background: var(--second-color);
+  color: #fff;
 }
 
 
@@ -147,7 +154,7 @@ body {
 a {
   -webkit-transition: .3s all ease;
   transition: .3s all ease;
-  color: #99ceff;
+  color: var(--main-color);
   text-decoration: none;
   background-color: transparent;
 }
