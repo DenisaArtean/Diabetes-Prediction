@@ -193,27 +193,6 @@ a {
   box-shadow: 0px 10px 34px -15px rgb(0 0 0 / 24%);
 }
 
-
-/* Sidebar */
-
-.wrapper {
-  display: flex;
-  width: 100%;
-}
-
-#sidebar {
-  width: 250px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  z-index: 999;
-  background: #333;
-  color: #fff;
-  transition: all 0.3s;
-}
-
-
 /* ALERT */
 .alert {
   position: relative;
