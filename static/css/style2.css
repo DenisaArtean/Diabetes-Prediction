@@ -11,9 +11,13 @@ body {
 }
 
 .text-color{
+  color: #e74a3b;
+  cursor: pointer;
+}
 
-  color: #99ceff;
-
+.text-color-blue{
+  color: var(--main-color);
+  cursor: pointer;
 }
 
 
@@ -43,6 +47,7 @@ p {
 }
 
 
+
 /* ---------------------------------------------------
     BUTTONS
 ----------------------------------------------------- */
@@ -60,10 +65,47 @@ p {
     text-align: center;
 }
 
-.btn:hover{
+.btn.btn-primary:hover{
   background: #99ceff;
   color: #333;
 }
+
+.btn.btn-blue {
+  display: inline-block;
+  font-size: 15px;
+  color: #fff;
+  background: #009efb;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem !important;
+  text-align: center;
+}
+
+.btn.btn.btn-blue:hover{
+background: #99daff;
+color: #333;
+}
+
+.btn.btn-secondary {
+  display: inline-block;
+  font-size: 15px;
+  color: #333;
+  background: #e3e6f0;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem !important;
+  text-align: center;
+}
+
+.btn.btn-secondary:hover{
+  background: #eef0f6;
+  color: #333;
+}
+
+
+
 
   
 
