@@ -20,6 +20,11 @@ body {
   cursor: pointer;
 }
 
+.text-color-black{
+  color: #333;
+  cursor: pointer;
+}
+
 
 
 .pagination-page-info {

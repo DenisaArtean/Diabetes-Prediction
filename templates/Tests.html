@@ -1,0 +1,197 @@
+{% extends "Layout.html" %}
+{% block title %}Tests{% endblock %}
+{% block body %}
+
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#newTestModal">Add Tests</button>
+
+      <!-- Modal-->
+        <div class="modal fade" id="newTestModal" tabindex="-1" role="dialog" aria-labelledby="newTestModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                    <h5 class="modal-title" id="newPatientModalLabel">Add new test</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+              </div>  
+              <div class="modal-body">
+
+                <form  action=" " method="POST">
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="pregnancies">Pregnancies</label>
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="pregnancies" id="pregnancies" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="glucose">Glucose</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Glucose" data-content="Plasma glucose concentration a 2 hours in an oral glucose tolerance test">
+                           <i class="fas fa-thin fa-info-circle fa-fw"></i> 
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="glucose" id="glucose" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="bloodPresure">Blood Presure</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Blood Presure" data-content="Diastolic blood pressure (mm Hg)"> 
+                          <i class="fas fa-thin fa-info-circle fa-fw"></i>
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="bloodpresure" id="bloodPresure" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="skinThickness">Skin Thickness</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Skin Thickness" data-content="Triceps skin fold thickness (mm)"> 
+                          <i class="fas fa-thin fa-info-circle fa-fw"></i>
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="skinthickness" id="skinThickness" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="insulin">Insulin</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Insulin" data-content="2-Hour serum insulin (mu U/ml)"> 
+                          <i class="fas fa-thin fa-info-circle fa-fw"></i> 
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="insulin" id="insulin" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="bmi">BMI</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Body Mass Index" data-content="weight in kg / (height in m)^2"> 
+                          <i class="fas fa-thin fa-info-circle fa-fw"></i> 
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="bmi" id="bmi" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="diabetesPredigreeFunction">Ped</label>
+                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Diabetes Pedigree Function" data-content=""> 
+                          <i class="fas fa-thin fa-info-circle fa-fw"></i> 
+                        </a> 
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="diabetespredigreefunction" id="diabetesPredigreeFunction" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+                    <div class="form-group row">
+                      <div class="col-md-4 d-flex justify-content-end">
+                        <label for="age">Age</label>
+                      </div>
+                      <div class="col-md-8">
+                        <input type="text" class="form-control" name="age" id="age" placeholder="Type here..." required="">
+                      </div>
+                    </div>
+
+
+
+              </div>
+              <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-blue rounded">Save changes</button>
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <br><br>
+
+        <table class="table table-striped" id="dataTable">
+            <thead>
+          
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Pregnancies</th>
+                <th scope="col">Glucose</th>
+                <th scope="col">Blood Presure</th>
+                <th scope="col">Skin Thickness</th>
+                <th scope="col">Insulin</th>
+                <th scope="col">BMI</th>
+                <th scope="col">Diabetes Pedigree Function</th>
+                <th scope="col">Age</th>
+                <th scope="col">Diabetes Predicton</th>
+                <th scope="col">Action</th>
+              </tr>
+          
+            </thead>
+
+            <tbody>
+                <tr>
+                  <th>date</th>
+                  <td>pregnancies</td>
+                  <td>glucose</td>
+                  <td>blood presure</td>
+                  <td>skin thickness</td>
+                  <td>insulin</td>
+                  <td>BMI</td>
+                  <td>diabetes predigree function</td>
+                  <td>age</td>
+                  <td>Prediction</td>
+                  <td> 
+                    <a data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
+                  </td>
+                </tr>
+
+
+               <!-- delete model -->
+                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel">Delete Test?</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form action="#" method="POST">
+                          <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </tbody>
+            </table>
+
+
+
+   </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $('[data-toggle="modal-popover"]').popover();   
+  });
+
+
+  </script>
+
+{% endblock %}

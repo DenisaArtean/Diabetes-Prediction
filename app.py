@@ -50,7 +50,17 @@ def dashboard():
 def patients():
 
   return render_template('Patients.html')
-    
+
+
+#----------------------------------------------------------------------------------------------------------------------------TESTS---------
+
+
+@app.route('/tests', methods=['POST','GET'])
+def tests():
+
+  return render_template('Tests.html')
+  
+
 #--------------------------------------------------------------------------------------------------------------------------------------------
 
 if __name__ == "__main__":  # Makes sure this is the main process
