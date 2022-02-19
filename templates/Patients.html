@@ -21,17 +21,17 @@
 
                     <div class="form-group">
                         <label for="patientId">Patient ID</label>
-                        <input type="text" class="form-control" name="name" id="patientId" placeholder="Patient ID" required="">
+                        <input type="text" class="form-control" name="patientid" id="patientId" placeholder="Patient ID" required="">
                     </div>
 
                     <div class="form-group">
                         <label for="lastName">Last Name</label>
-                        <input type="text" class="form-control" name="barcode" id="lastName" placeholder="Last Name" required="">
+                        <input type="text" class="form-control" name="lastname" id="lastName" placeholder="Last Name" required="">
                     </div>
 
                     <div class="form-group">
                         <label for="firstName">First Name</label>
-                        <input type="text" class="form-control" name="quantity" id="firstName" placeholder="First Name" required="">
+                        <input type="text" class="form-control" name="firstname" id="firstName" placeholder="First Name" required="">
                     </div>
 
 
@@ -65,6 +65,7 @@
                   <td>First Name</td>
                   <td> 
                     <a data-toggle="modal" data-target="#infoPatientModal"><i class="fas fa-solid fa-info fa-fw text-color-blue"></i></a>
+                    <a href="#"><i class="fa fa-edit text-color-black"></i></a>
                     <a data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
                   </td>
                 </tr>
@@ -82,25 +83,30 @@
                     <div class="modal-body">
       
                       <form  action=" " method="POST">
+
+                        <div class="form-group">
+                          <label for="sex">Sex</label>
+                          <input type="text" class="form-control" name="sex" id="sex" placeholder="Sex (M/F)" required="">
+                        </div>
       
                           <div class="form-group">
                               <label for="dateOfBirth">Date of Birth (yyy/mm/dd)</label>
-                              <input type="text" class="form-control" name="name" id="dateOfBirth" placeholder="Date of Birth (yyy/mm/dd)" required="">
+                              <input type="text" class="form-control" name="dateofbirth" id="dateOfBirth" placeholder="Date of Birth (yyy/mm/dd)" required="">
                           </div>
 
                           <div class="form-group">
-                            <label for="homaeAddress">Home Address</label>
-                            <input type="text" class="form-control" name="quantity" id="homeAddress" placeholder="Home Address" required="">
+                            <label for="homeAddress">Home Address</label>
+                            <input type="text" class="form-control" name="homeaddress" id="homeAddress" placeholder="Home Address" required="">
                         </div>
       
                           <div class="form-group">
                               <label for="email">Email</label>
-                              <input type="email" class="form-control" name="barcode" id="email" placeholder="Email" required="">
+                              <input type="email" class="form-control" name="email" id="email" placeholder="Email" required="">
                           </div>
       
                           <div class="form-group">
-                              <label for="firstName">Phone Number</label>
-                              <input type="numbers" class="form-control" name="quantity" id="phoneNumber" placeholder="Phone Number" required="">
+                              <label for="phoneNumber">Phone Number</label>
+                              <input type="numbers" class="form-control" name="phonenumber" id="phoneNumber" placeholder="Phone Number" required="">
                           </div>
       
       
@@ -108,7 +114,10 @@
                     <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
                           &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          <button type="button" class="btn btn-secondary">Add Tests</button>
+                          <button type="button" class="btn btn-secondary" >
+                            <a href = "http://127.0.0.1:5000/tests">Add Tests</a>
+                            <span class="glyphicon glyphicon-ok"></span> 
+                          </button>
                           <button type="submit" class="btn btn-blue rounded">Save changes</button>
                     </div>
                     </form>
