@@ -1,9 +1,11 @@
 from re import S
-from flask import render_template
+from flask import render_template, flash, url_for, request, redirect
 from flask_login import login_required
-from app_config import app
+from app_config import app, db
 
-
+from form import RegistrationForm
+from models import Users
+from passlib.hash import bcrypt
 
 
 
@@ -31,8 +33,19 @@ def logout():
 
 @app.route('/signup', methods = ['POST', 'GET'])
 def signup():
+  form = RegistrationForm(request.form)
+  if request.method == 'POST' and form.validate():
+        first_name = form.first_name.data
+        last_name = form.last_name.data
+        email = form.email.data
+        password = bcrypt.hash(str(form.password.data))
+        user = Users(first_name=first_name, last_name=last_name, email=email, password= password)
+        db.session.add(user)
+        db.session.commit()
+        flash('You are now registered', 'success')
+        return redirect(url_for('login'))
     
-    return render_template('SignUp.html')
+  return render_template('SignUp.html', form = form)
 
 #------------------------------------------------------------------------------------------------------------------------------DASHBOARD---------
 

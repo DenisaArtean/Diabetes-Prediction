@@ -20,22 +20,7 @@ body {
   padding: 7em 0;
 }
 
-.justify-content-center {
-  -webkit-box-pack: center !important;
-  -ms-flex-pack: center !important;
-  justify-content: center !important;
-}
 
-
-.row {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    margin-right: -15px;
-    margin-left: -15px;
-}
 
 
 .form-group {
@@ -127,9 +112,26 @@ body {
     text-align: center;
 }
 
-.btn:hover{
+.btn.btn-primary:hover{
   background: var(--second-color);
   color: #fff;
+}
+
+.btn.btn-secondary {
+  display: inline-block;
+  font-size: 15px;
+  color: #fff;
+  background: var(--second-color);
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem !important;
+  text-align: center;
+}
+
+.btn.btn-secondary:hover{
+background: var(--main-color);
+color: #333;
 }
 
 
