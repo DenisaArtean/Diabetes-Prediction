@@ -135,32 +135,33 @@
                 <th scope="col">BMI</th>
                 <th scope="col">Diabetes Pedigree Function</th>
                 <th scope="col">Age</th>
-                <th scope="col">Diabetes Predicton</th>
+                <th scope="col" class="bg-blue">Diabetes Predicton</th>
                 <th scope="col">Action</th>
               </tr>
           
             </thead>
 
             <tbody>
+              {% for test in tests %}
                 <tr>
-                  <th>date</th>
-                  <td>pregnancies</td>
-                  <td>glucose</td>
-                  <td>blood presure</td>
-                  <td>skin thickness</td>
-                  <td>insulin</td>
-                  <td>BMI</td>
-                  <td>diabetes predigree function</td>
-                  <td>age</td>
-                  <td>Prediction</td>
+                  <th>{{test.date}}</th>
+                  <td>{{test.pregnancies}}</td>
+                  <td>{{test.glucose}}</td>
+                  <td>{{test.blood_pressure}}</td>
+                  <td>{{test.skin_thickness}}</td>
+                  <td>{{test.insulin}}</td>
+                  <td>{{test.bmi}}</td>
+                  <td>{{test.diabetes_pedigree_function}}</td>
+                  <td>{{test.age}}</td>
+                  <td class="bg-blue">{{test.outcome}}</td> 
                   <td> 
-                    <a data-toggle="modal" data-target="#deleteModal"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
+                    <a data-toggle="modal" data-target="#deleteModal{{test.test_id}}"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
                   </td>
                 </tr>
 
 
                <!-- delete model -->
-                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+                <div class="modal fade" id="deleteModal{{test.test_id}}" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
                       <div class="modal-header">
@@ -171,13 +172,14 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <form action="#" method="POST">
+                        <form action="{{ url_for('delete_test', test_id = test.test_id, patient_id = test.patient_id) }}" method="POST">
                           <input class="btn btn-danger" type="submit" value="Delete">
                         </form>
                       </div>
                     </div>
                   </div>
                 </div>
+                {% endfor %}
               </tbody>
             </table>
 
