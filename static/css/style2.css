@@ -24,7 +24,10 @@ body {
   color: #333;
   cursor: pointer;
 }
-
+ 
+.bg-blue{
+  background-color: #e6f6ff; 
+}
 
 
 .pagination-page-info {
@@ -267,8 +270,8 @@ a:focus {
 
 #sidebar ul li.active>a,
 a[aria-expanded="true"] {
-    color: #fff;
-    background: #333;
+    color: #333;
+    background: #fff;
 }
 
 a[data-toggle="collapse"] {
