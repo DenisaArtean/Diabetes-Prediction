@@ -1,8 +1,10 @@
 
+import email
 from re import S
 from flask import render_template, flash, url_for, request, redirect, make_response
 from flask_login import login_required, login_user, current_user, logout_user, login_required
-from app_config import app, db
+from flask_mail import Message
+from app_config import app, db, mail
 
 from form import RegistrationForm
 from models import Users, Patients, Tests
@@ -10,8 +12,12 @@ from passlib.hash import bcrypt
 
 import pickle
 import pandas as pd
+import os
+from dotenv import load_dotenv 
 
 diabetes_model, scaler = pickle.load(open("diabetes.pkl", "rb"))
+load_dotenv()
+
 
 
 #-------------------------------------------------------------------------------------------------------------------------------LOG IN---------
@@ -91,7 +97,8 @@ def dashboard():
 @app.route('/patients', methods=['POST','GET'])
 @login_required
 def patients():
-    patients = Patients.query.filter(Patients.id_user == current_user.get_id()).all()
+    page = request.args.get('page', 1, type=int)
+    patients = Patients.query.filter(Patients.id_user == current_user.get_id()).paginate(page = page, per_page = 5)
     if request.method == 'POST':
         first_name = request.form.get('firstname')
         last_name = request.form.get('lastname')
@@ -138,7 +145,6 @@ def delete_patient(patient_id):
 @app.route('/tests/<int:patient_id>', methods=['POST', 'GET'])
 @login_required
 def tests(patient_id):
-
     tests = Tests.query.filter(Tests.patient_id == patient_id).all()
     if request.method == 'POST':
         pregnancies = request.form.get('pregnancies')
@@ -174,6 +180,17 @@ def delete_test(test_id, patient_id):
     test = Tests.query.get(test_id)
     db.session.delete(test)
     db.session.commit()
+    return redirect(url_for('tests', patient_id = patient_id))
+
+@app.route("/tests/<int:patient_id>/sendEmail/<int:test_id>", methods=['POST'])
+@login_required
+def send_email(test_id, patient_id):
+    test = Tests.query.get(test_id)
+    patient = Patients.query.get(patient_id)
+    print(os.getenv('EMAIL'))
+    msg = Message('Diabetes Tests', sender = os.getenv('EMAIL'),  recipients = [patient.email])
+    msg.html =  render_template('Email.html', test = test, patient = patient)
+    mail.send(msg)
     return redirect(url_for('tests', patient_id = patient_id))
 
 
