@@ -120,7 +120,7 @@
             </thead>
 
             <tbody>
-              {% for patient in patients %}
+              {% for patient in patients.items %}
                 <tr>
                <!---   <th>ID</th> -->
                   <td>{{patient.last_name}}</td>
@@ -200,8 +200,8 @@
                     </div>
                     <div class="modal-footer">
                           <button type="button" class="btn btn-secondary" data-dismiss="modal" >Close</button>
-                          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-                          <button type="button" class="btn  btn-secondary ">Send Email</button>
+                         <!--- &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; -->
+                          <!--<button type="button" class="btn  btn-secondary ">Send Email</button>-->
                           <button type="button" class="btn btn-blue rounded" >
                             <a href = "/tests/{{patient.patient_id}}">Add Tests</a>
                             <span class="glyphicon glyphicon-ok"></span> 
@@ -235,6 +235,18 @@
                 {% endfor %}
               </tbody>
             </table>
+
+            {% for page_num in patients.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=1) %}
+            {% if page_num %}
+              {% if patients.page == page_num %}
+              <a class="btn btn-info  mb-4" href="{{ url_for('patients', page=page_num)}}">{{page_num}}</a>
+              {% else %}
+              <a class="btn btn-outline-info mb-4" href="{{ url_for('patients', page=page_num)}}">{{page_num}}</a>
+              {% endif %} 
+            {% else %}
+              ...
+            {% endif %}
+            {% endfor %}
 
 
 

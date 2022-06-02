@@ -26,7 +26,7 @@ body {
 }
  
 .bg-blue{
-  background-color: #e6f6ff; 
+  background-color: #e6f6ff;  
 }
 
 
@@ -76,6 +76,24 @@ p {
 .btn.btn-primary:hover{
   background: #99ceff;
   color: #333;
+}
+
+.btn-info {
+  color: #333;
+  background-color: #e3e6f0;
+  border-color: #fff;
+}
+
+.btn-info:hover {
+  color: #333;
+  background-color: #eef0f6;
+  border-color: #fff;
+}
+
+.btn-outline-info {
+  background-color: transparent;
+  /* color: #99ceff;
+  border-color: #99ceff; */
 }
 
 .btn.btn-blue {
