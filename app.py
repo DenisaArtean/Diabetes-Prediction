@@ -18,6 +18,10 @@ from dotenv import load_dotenv
 diabetes_model, scaler = pickle.load(open("diabetes.pkl", "rb"))
 load_dotenv()
 
+from sklearn.linear_model import LogisticRegression
+
+LogisticRegression()
+
 
 
 #-------------------------------------------------------------------------------------------------------------------------------LOG IN---------
@@ -97,8 +101,8 @@ def dashboard():
 @app.route('/patients', methods=['POST','GET'])
 @login_required
 def patients():
-    page = request.args.get('page', 1, type=int)
-    patients = Patients.query.filter(Patients.id_user == current_user.get_id()).paginate(page = page, per_page = 5)
+    # page = request.args.get('page', 1, type=int)
+    patients = Patients.query.filter(Patients.id_user == current_user.get_id()).all()
     if request.method == 'POST':
         first_name = request.form.get('firstname')
         last_name = request.form.get('lastname')

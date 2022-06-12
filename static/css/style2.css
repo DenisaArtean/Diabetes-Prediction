@@ -55,6 +55,24 @@ p {
 }
 
 
+.btn.btn-pagination {
+  display: inline-block;
+  font-size: 15px;
+  color: #333;
+  background: #e3e6f0;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 0.25rem !important;
+  text-align: center;
+}
+
+.btn.btn-pagination:hover{
+  background: #eef0f6;
+  color: #99ceff;
+}
+
+
 
 /* ---------------------------------------------------
     BUTTONS

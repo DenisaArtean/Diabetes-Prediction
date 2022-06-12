@@ -12,3 +12,4 @@ class RegistrationForm(Form):
         user = Users.query.filter_by(email=email.data).first()
         if user:
             raise ValidationError('This email is taken. Please choose a different one.')
+
