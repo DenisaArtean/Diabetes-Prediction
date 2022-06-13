@@ -29,6 +29,9 @@ body {
   background-color: #e6f6ff;  
 }
 
+.spaceUnder {
+  padding-bottom: 1em;
+}
 
 .pagination-page-info {
   padding: .6em;
@@ -68,8 +71,8 @@ p {
 }
 
 .btn.btn-pagination:hover{
-  background: #eef0f6;
-  color: #99ceff;
+  background: #dee2ed;
+  color: #333;
 }
 
 

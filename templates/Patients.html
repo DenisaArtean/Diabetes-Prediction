@@ -126,9 +126,10 @@
                   <td>{{patient.last_name}}</td>
                   <td>{{patient.first_name}}</td>
                   <td> 
-                    <a data-toggle="modal" data-target="#infoPatientModal{{patient.patient_id}}"><i class="fas fa-solid fa-info fa-fw text-color-blue"></i></a>
-                    <a href="/updatepatient/{{patient.patient_id}}"><i class="fa fa-edit text-color-black"></i></a>
-                    <a data-toggle="modal" data-target="#deleteModal{{patient.patient_id}}"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
+                    <a title="patient info" data-toggle="modal" data-target="#infoPatientModal{{patient.patient_id}}"><i class="fas fa-solid fa-info fa-fw text-color-blue"></i></a>
+                    <a title="tests statistics" href="/dashboard/{{patient.patient_id}}"> <i class="fa fa-bar-chart"></i> </a>
+                    <a title="edit patient" href="/updatepatient/{{patient.patient_id}}"><i class="fa fa-edit text-color-black"></i></a>
+                    <a title="delete patient" data-toggle="modal" data-target="#deleteModal{{patient.patient_id}}"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
                   </td>
                 </tr>
 
