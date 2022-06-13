@@ -4,6 +4,9 @@
 
       <!-- Button trigger modal -->
       <button type="button" class="btn btn-secondary rounded" data-toggle="modal" data-target="#newTestModal">Add Tests</button>
+      
+
+
 
       <!-- Modal-->
         <div class="modal fade" id="newTestModal" tabindex="-1" role="dialog" aria-labelledby="newTestModalLabel" aria-hidden="true">
@@ -156,8 +159,8 @@
                   <td>{{test.age}}</td>
                   <td class="bg-blue">{{test.outcome}}</td> 
                   <td> 
-                    <a data-toggle="modal" data-target="#sendEmail{{test.test_id}}"> <i class="fas fa-envelope fa-fw text-color-black"></i></a>
-                    <a data-toggle="modal" data-target="#deleteModal{{test.test_id}}"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
+                    <a title="send email" data-toggle="modal" data-target="#sendEmail{{test.test_id}}"> <i class="fas fa-envelope fa-fw text-color-black"></i></a>
+                    <a title="delete test" data-toggle="modal" data-target="#deleteModal{{test.test_id}}"> <i class="fas fa-trash-alt fa-fw text-color"></i></a>
                   </td>
                 </tr>
 

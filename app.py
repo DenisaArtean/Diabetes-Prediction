@@ -9,6 +9,8 @@ from app_config import app, db, mail
 from form import RegistrationForm
 from models import Users, Patients, Tests
 from passlib.hash import bcrypt
+from sqlalchemy import func, extract, Date, cast
+import json
 
 import pickle
 import pandas as pd
@@ -43,7 +45,7 @@ def login():
           passwordd=Users.query.filter_by(email=email).first()
           if bcrypt.verify(password_candidate, passwordd.password):
               login_user(user)
-              return redirect(url_for('dashboard'))
+              return redirect(url_for('patients'))
           else:
               error = "Invalid Password"
               return render_template('Login.html', error=error)
@@ -84,16 +86,6 @@ def signup():
         return redirect(url_for('login'))
     
   return render_template('SignUp.html', form = form)
-
-#------------------------------------------------------------------------------------------------------------------------------DASHBOARD---------
-
-
-@app.route('/dashboard')
-@login_required
-def dashboard():
-
-    return render_template('Dashboard.html')
-
 
 #----------------------------------------------------------------------------------------------------------------------------PATIENTS---------
 
@@ -196,6 +188,44 @@ def send_email(test_id, patient_id):
     msg.html =  render_template('Email.html', test = test, patient = patient)
     mail.send(msg)
     return redirect(url_for('tests', patient_id = patient_id))
+
+
+#------------------------------------------------------------------------------------------------------------------------------DASHBOARD---------
+
+
+@app.route('/dashboard/<int:patient_id>', methods=['POST', 'GET'])
+@login_required
+def dashboard(patient_id):
+
+    tests = Tests.query.filter(Tests.patient_id == patient_id).all()
+    glucose_ = []
+    blood_pressure_ = []
+    skin_thickness_ = []
+    insulin_ = []
+    bmi_ = []
+    pedi_ = []
+    date_ = []
+    for test in tests:
+        glucose_.append(test.glucose)
+        blood_pressure_.append(test.blood_pressure)
+        skin_thickness_.append(test.skin_thickness)
+        insulin_.append(test.insulin)
+        bmi_.append(test.bmi)
+        pedi_.append(test.diabetes_pedigree_function)
+        date_.append(test.date)
+    print(glucose_)
+    print(date_)
+
+        
+    
+
+    return render_template('Dashboard.html',
+     glucose_ = json.dumps(glucose_),
+     blood_pressure_ = json.dumps(blood_pressure_),
+     skin_thickness_ = json.dumps(skin_thickness_),
+     insulin_ = json.dumps(insulin_),
+     pedi_ = json.dumps(pedi_),
+     date_ = json.dumps(date_, default=str))
 
 
 #--------------------------------------------------------------------------------------------------------------------------------------------
