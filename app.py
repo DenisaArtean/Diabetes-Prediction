@@ -149,12 +149,9 @@ def tests(patient_id):
         skin_thickness = request.form.get('skinthickness')
         insulin = request.form.get('insulin')
         bmi = request.form.get('bmi')
-        diabetes_pedigree_function = request.form.get('diabetespredigreefunction')
         age = request.form.get('age')
-        # row = pd.DataFrame([pd.Series([pregnancies, glucose, blood_pressure, skin_thickness, insulin, bmi, diabetes_pedigree_function, age])])
         data = {'Pregnancies': [pregnancies], 'Glucose': [glucose], "BloodPressure": [blood_pressure], 
-            'SkinThickness': [skin_thickness], 'Insulin': [insulin], 'BMI': [bmi],
-            'DiabetesPedigreeFunction': [diabetes_pedigree_function], 'Age': [age]}
+            'SkinThickness': [skin_thickness], 'Insulin': [insulin], 'BMI': [bmi], 'Age': [age]}
         row = pd.DataFrame.from_dict(data)
         row = scaler.transform(row)
         print(row)
@@ -163,7 +160,7 @@ def tests(patient_id):
         outcome = str(float(outcome)*100)+'%'
         add = Tests(pregnancies = pregnancies, glucose = glucose, blood_pressure = blood_pressure,
                      skin_thickness = skin_thickness, insulin = insulin, bmi = bmi, 
-                     diabetes_pedigree_function = diabetes_pedigree_function,age = age,  patient_id = patient_id, outcome = outcome)
+                     age = age,  patient_id = patient_id, outcome = outcome)
         db.session.add(add)
         db.session.commit()
         return redirect(url_for('tests', patient_id = patient_id))
@@ -203,7 +200,6 @@ def dashboard(patient_id):
     skin_thickness_ = []
     insulin_ = []
     bmi_ = []
-    pedi_ = []
     date_ = []
     for test in tests:
         glucose_.append(test.glucose)
@@ -211,7 +207,6 @@ def dashboard(patient_id):
         skin_thickness_.append(test.skin_thickness)
         insulin_.append(test.insulin)
         bmi_.append(test.bmi)
-        pedi_.append(test.diabetes_pedigree_function)
         date_.append(test.date)
     print(glucose_)
     print(date_)
@@ -224,7 +219,6 @@ def dashboard(patient_id):
      blood_pressure_ = json.dumps(blood_pressure_),
      skin_thickness_ = json.dumps(skin_thickness_),
      insulin_ = json.dumps(insulin_),
-     pedi_ = json.dumps(pedi_),
      date_ = json.dumps(date_, default=str))
 
 

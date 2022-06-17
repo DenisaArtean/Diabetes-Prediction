@@ -38,7 +38,6 @@ class Tests(db.Model):
   skin_thickness = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
   insulin = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
   bmi = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
-  diabetes_pedigree_function = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
   age = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
   date = db.Column(db.DateTime,nullable=False,unique=False, default=datetime.datetime.now())
   patient_id = db.Column(db.Integer, db.ForeignKey('patients.patient_id'))
