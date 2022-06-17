@@ -24,7 +24,6 @@
               <a class="dropdown-item" onclick="myBloodP()">Blood Pressure Overview</a>
               <a class="dropdown-item" onclick="mySkinT()">Skin Thickness Overview</a>
               <a class="dropdown-item" onclick="myInsulin()">Insulin Overview</a>
-              <a class="dropdown-item" onclick="myPedi()">Diabetes Pedigree Function Overview</a>
               <div class="dropdown-divider"></div> 
             </div>
           </div>
@@ -54,11 +53,6 @@
           </div>
         </div>
 
-        <div class="card-body" id="chart5" style="display:none;">
-          <div class="chart-area" style="height:450px;">
-            <canvas id="myChart4" ></canvas>
-          </div>
-        </div>
 
       </div>
     </div>
@@ -72,13 +66,11 @@
     const ctx1 = document.getElementById('myChart1').getContext('2d');
     const ctx2 = document.getElementById('myChart2').getContext('2d');
     const ctx3 = document.getElementById('myChart3').getContext('2d');
-    const ctx4 = document.getElementById('myChart4').getContext('2d');
 
     glucose = JSON.parse({{ glucose_ | tojson}})
     blood_pressure = JSON.parse({{ blood_pressure_ | tojson}})
     skin_thickness = JSON.parse({{ skin_thickness_ | tojson}})
     insulin = JSON.parse({{ insulin_ | tojson}})
-    pedi = JSON.parse({{ pedi_ | tojson}})
     date = JSON.parse({{ date_ | tojson}})
 
     const myChart = new Chart(ctx, {
@@ -191,42 +183,12 @@ const myChart3 = new Chart(ctx3, {
   }
 });
 
-const myChart4 = new Chart(ctx4, {
-  type: 'line',
-  data: {
-      labels: date,
-      datasets: [{
-          label: 'Diabetes Pedigree Function',
-          data: pedi,
-          backgroundColor: [
-              'rgb(0, 158, 251)',
-              
-          ],
-          borderColor: [
-          'rgb(0, 158, 251)'
-          ],
-          borderWidth: 1
-      }]
-  },
-  options: {
-    maintainAspectRatio: false,
-    responsive: true,
-      scales: {
-          y: {
-              beginAtZero: true
-          } 
-      }
-  }
-});
-
-
 
   function myGlucose() {
     document.getElementById("chart1").style.display = "block";
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
-    document.getElementById("chart5").style.display = "none";
   }
 
   function myBloodP() {
@@ -234,7 +196,6 @@ const myChart4 = new Chart(ctx4, {
     document.getElementById("chart2").style.display = "block";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "none";
-    document.getElementById("chart5").style.display = "none";
   }
 
   function mySkinT() {
@@ -242,7 +203,6 @@ const myChart4 = new Chart(ctx4, {
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "block";
     document.getElementById("chart4").style.display = "none";
-    document.getElementById("chart5").style.display = "none";
   }
 
   function myInsulin() {
@@ -250,16 +210,8 @@ const myChart4 = new Chart(ctx4, {
     document.getElementById("chart2").style.display = "none";
     document.getElementById("chart3").style.display = "none";
     document.getElementById("chart4").style.display = "block";
-    document.getElementById("chart5").style.display = "none";
   }
 
-  function myPedi() {
-    document.getElementById("chart1").style.display = "none";
-    document.getElementById("chart2").style.display = "none";
-    document.getElementById("chart3").style.display = "none";
-    document.getElementById("chart4").style.display = "none";
-    document.getElementById("chart5").style.display = "block";
-  }
 
 
 
