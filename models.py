@@ -32,13 +32,10 @@ class Patients(db.Model):
 
 class Tests(db.Model):
   test_id = db.Column(db.Integer, primary_key=True)
-  pregnancies = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
+  pregnancies = db.Column(db.Integer,nullable=False,unique=False)
   glucose = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
-  blood_pressure = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
-  skin_thickness = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
-  insulin = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
   bmi = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
-  age = db.Column(DOUBLE_PRECISION,nullable=False,unique=False)
+  age = db.Column(db.Integer,nullable=False,unique=False)
   date = db.Column(db.DateTime,nullable=False,unique=False, default=datetime.datetime.now())
   patient_id = db.Column(db.Integer, db.ForeignKey('patients.patient_id'))
   outcome = db.Column(db.String, nullable=False,unique=False)

@@ -145,22 +145,18 @@ def tests(patient_id):
     if request.method == 'POST':
         pregnancies = request.form.get('pregnancies')
         glucose = request.form.get('glucose')
-        blood_pressure = request.form.get('bloodpresure')
-        skin_thickness = request.form.get('skinthickness')
-        insulin = request.form.get('insulin')
         bmi = request.form.get('bmi')
         age = request.form.get('age')
-        data = {'Pregnancies': [pregnancies], 'Glucose': [glucose], "BloodPressure": [blood_pressure], 
-            'SkinThickness': [skin_thickness], 'Insulin': [insulin], 'BMI': [bmi], 'Age': [age]}
+        data = {'Pregnancies': [pregnancies], 'Glucose': [glucose],  'BMI': [bmi], 'Age': [age]}
         row = pd.DataFrame.from_dict(data)
         row = scaler.transform(row)
         print(row)
         prediction = diabetes_model.predict_proba(row)
+        prediction2 = diabetes_model.predict(row)[0]
         outcome='{0:.{1}f}'.format(prediction[0][1], 2)
-        outcome = str(float(outcome)*100)+'%'
-        add = Tests(pregnancies = pregnancies, glucose = glucose, blood_pressure = blood_pressure,
-                     skin_thickness = skin_thickness, insulin = insulin, bmi = bmi, 
-                     age = age,  patient_id = patient_id, outcome = outcome)
+        outcomeFinal = str(int(prediction2)) +' (' + str(float(outcome)*100) + "%)"
+        add = Tests(pregnancies = pregnancies, glucose = glucose, bmi = bmi, 
+                     age = age,  patient_id = patient_id, outcome = outcomeFinal)
         db.session.add(add)
         db.session.commit()
         return redirect(url_for('tests', patient_id = patient_id))
@@ -196,29 +192,20 @@ def dashboard(patient_id):
 
     tests = Tests.query.filter(Tests.patient_id == patient_id).all()
     glucose_ = []
-    blood_pressure_ = []
-    skin_thickness_ = []
-    insulin_ = []
     bmi_ = []
     date_ = []
     for test in tests:
         glucose_.append(test.glucose)
-        blood_pressure_.append(test.blood_pressure)
-        skin_thickness_.append(test.skin_thickness)
-        insulin_.append(test.insulin)
+        bmi_.append(test.bmi)
         bmi_.append(test.bmi)
         date_.append(test.date)
-    print(glucose_)
-    print(date_)
 
         
     
 
     return render_template('Dashboard.html',
      glucose_ = json.dumps(glucose_),
-     blood_pressure_ = json.dumps(blood_pressure_),
-     skin_thickness_ = json.dumps(skin_thickness_),
-     insulin_ = json.dumps(insulin_),
+     bmi_ = json.dumps(bmi_),
      date_ = json.dumps(date_, default=str))
 
 

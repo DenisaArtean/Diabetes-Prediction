@@ -43,42 +43,7 @@
                       </div>
                     </div>
 
-                    <div class="form-group row">
-                      <div class="col-md-4 d-flex justify-content-end">
-                        <label for="bloodPresure">Blood Presure</label>
-                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Blood Presure" data-content="Diastolic blood pressure (mm Hg)"> 
-                          <i class="fas fa-thin fa-info-circle fa-fw"></i>
-                        </a> 
-                      </div>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control" name="bloodpresure" id="bloodPresure" placeholder="Type here..." required="">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-4 d-flex justify-content-end">
-                        <label for="skinThickness">Skin Thickness</label>
-                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Skin Thickness" data-content="Triceps skin fold thickness (mm)"> 
-                          <i class="fas fa-thin fa-info-circle fa-fw"></i>
-                        </a> 
-                      </div>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control" name="skinthickness" id="skinThickness" placeholder="Type here..." required="">
-                      </div>
-                    </div>
-
-                    <div class="form-group row">
-                      <div class="col-md-4 d-flex justify-content-end">
-                        <label for="insulin">Insulin</label>
-                        <a href="#" tabindex="0" data-placement="top" role="button" class="popover-test" data-toggle="modal-popover" title="Insulin" data-content="2-Hour serum insulin (mu U/ml)"> 
-                          <i class="fas fa-thin fa-info-circle fa-fw"></i> 
-                        </a> 
-                      </div>
-                      <div class="col-md-8">
-                        <input type="text" class="form-control" name="insulin" id="insulin" placeholder="Type here..." required="">
-                      </div>
-                    </div>
-
+              
                     <div class="form-group row">
                       <div class="col-md-4 d-flex justify-content-end">
                         <label for="bmi">BMI</label>
@@ -121,9 +86,6 @@
                 <th scope="col">Date</th>
                 <th scope="col">Pregnancies</th>
                 <th scope="col">Glucose</th>
-                <th scope="col">Blood Presure</th>
-                <th scope="col">Skin Thickness</th>
-                <th scope="col">Insulin</th>
                 <th scope="col">BMI</th>
                 <th scope="col">Age</th>
                 <th scope="col" class="bg-blue">Diabetes Predicton</th>
@@ -138,9 +100,6 @@
                   <th>{{test.date}}</th>
                   <td>{{test.pregnancies}}</td>
                   <td>{{test.glucose}}</td>
-                  <td>{{test.blood_pressure}}</td>
-                  <td>{{test.skin_thickness}}</td>
-                  <td>{{test.insulin}}</td>
                   <td>{{test.bmi}}</td>
                   <td>{{test.age}}</td>
                   <td class="bg-blue">{{test.outcome}}</td> 
@@ -181,6 +140,63 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
+
+                      <div class="modal-body">
+                      <form  action=" " method="POST">
+
+                        <div class="form-group row">
+                          <div class="col-md-4 d-flex justify-content-end">
+                            <label for="pregnancies">Pregnancies:</label>
+                          </div>
+                          <div class="col-md-8">
+                            <label>{{test.pregnancies}}</label>
+                          </div>
+                         <!--- <input type="text" class="form-control" name="sex" id="sex" placeholder="Sex (M/F)" required=""> -->
+                        </div>
+      
+                          <div class="form-group row">
+                            <div class="col-md-4 d-flex justify-content-end">
+                              <label for="glucose">Glucose:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <label>{{test.glucose}}</label>
+                             <!-- <input type="text" class="form-control" name="dateofbirth" id="dateOfBirth" placeholder="Date of Birth (yyy/mm/dd)" required=""> -->
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-md-4 d-flex justify-content-end">
+                              <label for="bmi">BMI:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <label>{{test.bmi}}</label>
+                             <!-- <input type="text" class="form-control" name="homeaddress" id="homeAddress" placeholder="Home Address" required=""> -->
+                            </div>
+                        </div>
+      
+                          <div class="form-group row">
+                            <div class="col-md-4 d-flex justify-content-end">
+                              <label for="age">Age:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <label>{{test.age}}</label>
+                            <!---  <input type="email" class="form-control" name="email" id="email" placeholder="Email" required=""> -->
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <div class="col-md-4 d-flex justify-content-end">
+                              <label for="pred">Prediction:</label>
+                            </div>
+                            <div class="col-md-8">
+                              <label>{{test.outcome}}</label>
+                            <!---  <input type="numbers" class="form-control" name="phonenumber" id="phoneNumber" placeholder="Phone Number" required=""> -->
+                            </div>
+                          </div>
+                          
+      
+      
+                    </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                         <form action="{{ url_for('send_email', test_id = test.test_id, patient_id = test.patient_id) }}" method="POST">
@@ -193,6 +209,8 @@
                 {% endfor %}
               </tbody>
             </table>
+
+            <p> Note: The format of 'Diabetes Prediction' is <stong>1 (chance of diabetes)</strong> and <strong>0 (chance of diabetes)</strong>, where 0 is NO and 1 is YES. </p>
 
 
 
